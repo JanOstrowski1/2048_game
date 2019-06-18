@@ -8,6 +8,7 @@ public class DrawUtils {
     private DrawUtils() {
     }
 
+
     public static int getMessageWidth(String message, Font font, Graphics2D g) {
         g.setFont(font);
         Rectangle2D bounds = g.getFontMetrics().getStringBounds(message, g);
