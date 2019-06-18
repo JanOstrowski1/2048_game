@@ -27,19 +27,20 @@ public class Game extends JPanel implements KeyListener, Runnable {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         addKeyListener(this);
 
+        board = new GameBoard(WIDTH / 2 - GameBoard.BOARD_WIDTH / 2, HEIGHT - GameBoard.BOARD_HEIGHT - 10);
+
     }
 
     private void update() {
-        if(Keyboard.typed(KeyEvent.VK_DOWN)){
-            System.out.println("wow");
-        }
-    Keyboard.update();
+        board.update();
+        Keyboard.update();
     }
 
     private void render() {
         Graphics2D g = (Graphics2D) image.getGraphics();
         g.setColor(Color.white);
         g.fillRect(0, 0, WIDTH, HEIGHT);
+        board.render(g);
         g.dispose();
 
         Graphics2D g2d = (Graphics2D) getGraphics();
