@@ -16,6 +16,7 @@ public class Game extends JPanel implements KeyListener, Runnable {
     private Thread game;
     private boolean running;
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+    private GameBoard board;
 
     private long startTime;
     private long elapsed;
@@ -25,10 +26,14 @@ public class Game extends JPanel implements KeyListener, Runnable {
         setFocusable(true);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         addKeyListener(this);
+
     }
 
     private void update() {
-
+        if(Keyboard.typed(KeyEvent.VK_DOWN)){
+            System.out.println("wow");
+        }
+    Keyboard.update();
     }
 
     private void render() {
@@ -45,17 +50,16 @@ public class Game extends JPanel implements KeyListener, Runnable {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        Keyboard.keyPressed(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        Keyboard.keyReleased(e);
     }
 
     @Override
