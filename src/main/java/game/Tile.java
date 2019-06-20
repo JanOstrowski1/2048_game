@@ -89,6 +89,10 @@ public class Tile {
         g.dispose();
     }
 
+    public int getValue() {
+        return value;
+    }
+
     public void update() {
 
     }

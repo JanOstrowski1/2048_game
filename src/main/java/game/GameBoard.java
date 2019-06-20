@@ -32,6 +32,7 @@ public class GameBoard {
         finalBoard = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
         
         createBoardImage();
+        start();
     }
 
     private void createBoardImage() {
@@ -83,11 +84,31 @@ public class GameBoard {
     public void render(Graphics2D g){
         Graphics2D g2d = (Graphics2D)finalBoard.getGraphics();
         g2d.drawImage(gameBoard,0,0,null);
+
+        for(int row = 0 ; row <ROWS;row++){
+            for (int col = 0; col < COLS; col++) {
+                Tile current = board [row][col];
+                if(current==null) continue;
+                current.render(g2d);
+            }
+        }
+        
         g.drawImage(finalBoard,x,y,null);
         g2d.dispose();
     }
     public void update(){
         checkKeys();
+
+        for (int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLS; col++) {
+                Tile current = board[row][col];
+                if(current==null)continue;
+                current.update();
+                if(current.getValue()==2048){
+                    won=true;
+                }
+            }
+        }
     }
 
     private void checkKeys() {
